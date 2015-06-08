@@ -12,10 +12,11 @@ def check_path(artist, album):
 		return False
 
 def move_song(song, artist, album, title):
-	if os.path.exists(str(artist) + "/" + str(album)) == True:
+	if check_path() == True:
 		shutil.move(str(song), str(artist) + "/" + str(album) + "/" + str(title))
 	else:
 		os.makedirs(str(artist) + "/" + str(album))
+		shutil.move(str(song), str(artist) + "/" + str(album) + "/" + str(title))
 
 
 def main():
