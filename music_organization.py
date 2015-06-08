@@ -6,17 +6,12 @@ import shutil
 current_directory = os.listdir(".")
 
 def check_path(artist, album):
-	if os.path.exists(str(artist) + "/" + str(album)) == True:
-		return True
-	else:
-		return False
-
+	return os.path.exists(str(artist) + "/" + str(album))
+	
 def move_song(song, artist, album, title):
-	if check_path() == True:
-		shutil.move(str(song), str(artist) + "/" + str(album) + "/" + str(title))
-	else:
+	if check_path(artist, album) == False:
 		os.makedirs(str(artist) + "/" + str(album))
-		shutil.move(str(song), str(artist) + "/" + str(album) + "/" + str(title))
+	shutil.move(str(song), str(artist) + "/" + str(album) + "/" + str(title))
 
 
 def main():
