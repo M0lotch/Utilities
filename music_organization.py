@@ -1,5 +1,7 @@
-from pytag import AudioReader, FormatNotSupportedError
-import os, sys
+from pytag import AudioReader
+from pytag import FormatNotSupportedError
+import os
+import sys
 import shutil
 
 
@@ -18,17 +20,16 @@ def main():
 	print("Organizing...")
 
 	for song in current_directory:
-		filename = song
 
 		try:
 			if filename.endswith(".mp3"):
-				audio = AudioReader(song)
+				audio = AudioReader(filename)
 				check_path(audio.artist, audio.album)
 				move_song(filename, audio.artist, audio.album, audio.title)
 		except FormatNotSupportedError:
-			print(filename + "Skipped, must be organized manually!")
+			print("{0} Skipped, must be organized manually!".format(filename))
 
 	print("Oranizing complete. Hopefully it's not all fucky!")
 
-
-main()
+if __name__ == 'main':
+	main()
